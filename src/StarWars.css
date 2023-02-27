@@ -1,10 +1,31 @@
 .StarWars {
+  display: flex;
+  flex-direction: column;
   border: 2px;
   text-align: center;
   padding: 20px;
   margin-bottom: 10px;
 }
 
-.Saved-Characters {
-  text-align: right;
+.StarWars > form button {
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid;
+  margin: 0;
+  background-color: green;
+  color: white;
+  border-radius: .5rem;
 }
+
+.StarWars > form input {
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid;
+  margin: 0;
+  border-radius: .5rem;
+}
+.StarWars h2 {
+  width: 100%;
+  margin: 20px;
+}
+

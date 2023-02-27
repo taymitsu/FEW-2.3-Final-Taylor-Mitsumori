@@ -1,4 +1,5 @@
 import React from 'react';
+import './DisplayStarWars.css'
 
 function DisplayStarWars(props) {
   const { error, name, height, mass, hair_color, eye_color, saveCharacter } = props;
@@ -9,12 +10,12 @@ function DisplayStarWars(props) {
 
   return (
     <div className="StarWarsDisplay">
-      <h1>Character: {name}</h1>
+      <h3>Character: {name}</h3>
       <p>Height: {height}</p>
       <p>Mass: {mass}</p>
       <p>Hair Color: {hair_color}</p>
       <p>Eye Color: {eye_color}</p>
-      <button onClick={saveCharacter}>Save Character</button>
+      <button onClick={saveCharacter} id="button">Save Character</button>
     </div>
 
   );

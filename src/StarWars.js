@@ -33,8 +33,9 @@ function StarWars() {
   }
 
   return (
+    //display left
     <div className="StarWars">
-      <h2>Search Star Wars Characters: </h2>
+      <h2>Star Wars Characters</h2>
       {data && <DisplayStarWars {...data} saveCharacter={saveCharacter} />}
       <form
         onSubmit={(e) => {
@@ -49,8 +50,9 @@ function StarWars() {
         />
         <button>Submit</button>
       </form>
+
       <div className="Saved-Characters">
-      <h2>Saved Characters: </h2>
+      <h2>Saved Characters </h2>
         {savedCharacters.length > 0 && (
           <SavedCharacters characters={savedCharacters} />
         )}
