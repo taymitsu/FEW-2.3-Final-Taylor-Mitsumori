@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import './StarWars.css'
+import './StarWars.css';
 import DisplayStarWars from './DisplayStarWars';
+import SavedCharacters from './SavedCharacters';
 
 function StarWars() {
   const [characterNumber, setCharacterNumber] = useState('');
@@ -8,65 +9,48 @@ function StarWars() {
   const [savedCharacters, setSavedCharacters] = useState([]);
 
   async function fetchStarWars() {
+    //const apikey
     const path = `https://swapi.dev/api/people/${characterNumber}/`;
     const res = await fetch(path);
     const json = await res.json();
 
-    //const cod = json.cod;
-   // const message = json.message;
-
-    //if (cod !== 87) {
-      //setData({ cod, message });
-      //eturn;
-    //}
-
-    const name = json.name;
-    const height = json.height;
-    const mass = json.mass;
-    const hairColor = json.hair_color;
-    const eyeColor = json.eye_color;
+    //error message
+    
+    const { name, height, mass, hair_color, eye_color } = json;
 
     setData({
+      error: false,
       name,
       height,
       mass,
-      hairColor,
-      eyeColor
+      hair_color,
+      eye_color,
     });
   }
 
-  function handleSave() {
-    setSavedCharacters(savedCharacters => [...savedCharacters, data]);
-  }
-
-  function handleCharacterClick(savedCharacter) {
-    setData(savedCharacter);
+  function saveCharacter() {
+    setSavedCharacters([...savedCharacters, data]);
   }
 
   return (
     <div className="StarWars">
-      {data && <DisplayStarWars {...data} />}
-      <form onSubmit={e => {
-        e.preventDefault();
-        fetchStarWars();
-      }}>
-        <div>
-          <input
-            placeholder="Enter Character ID Number"
-            value={characterNumber}
-            onChange={e => setCharacterNumber(e.target.value)}
-          />
-          <button>Submit</button>
-        </div>
+      {data && <DisplayStarWars {...data} saveCharacter={saveCharacter} />}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          fetchStarWars();
+        }}
+      >
+        <input
+          placeholder="Enter Character ID Number"
+          value={characterNumber}
+          onChange={(e) => setCharacterNumber(e.target.value)}
+        />
+        <button>Submit</button>
       </form>
-      <div className="saved-characters">
-        {savedCharacters.map((savedCharacter, index) => (
-          <button key={index} onClick={() => handleCharacterClick(savedCharacter)}>
-            {savedCharacter.name}
-          </button>
-        ))}
-      </div>
-      {data && <button onClick={handleSave}>Save</button>}
+      {savedCharacters.length > 0 && (
+        <SavedCharacters characters={savedCharacters} />
+      )}
     </div>
   );
 }

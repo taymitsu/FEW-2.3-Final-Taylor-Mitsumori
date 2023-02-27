@@ -1,10 +1,10 @@
 import React from 'react';
 
 function DisplayStarWars(props) {
-  const { error, name, height, mass, hair_color, eye_color } = props;
+  const { error, name, height, mass, hair_color, eye_color, saveCharacter } = props;
 
   if (error) {
-    return <small>Unable to fetch character data. Please try again.</small>;
+    return <small>Unable to fetch data. Please try again.</small>;
   }
 
   return (
@@ -14,7 +14,9 @@ function DisplayStarWars(props) {
       <p>Mass: {mass}</p>
       <p>Hair Color: {hair_color}</p>
       <p>Eye Color: {eye_color}</p>
+      <button onClick={saveCharacter}>Save Character</button>
     </div>
+
   );
 }
 
