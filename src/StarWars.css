@@ -1,0 +1,10 @@
+.StarWars {
+  border: 2px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.Saved-Characters {
+  text-align: right;
+}

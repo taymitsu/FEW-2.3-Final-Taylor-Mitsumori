@@ -34,6 +34,7 @@ function StarWars() {
 
   return (
     <div className="StarWars">
+      <h2>Search Star Wars Characters: </h2>
       {data && <DisplayStarWars {...data} saveCharacter={saveCharacter} />}
       <form
         onSubmit={(e) => {
@@ -42,15 +43,18 @@ function StarWars() {
         }}
       >
         <input
-          placeholder="Enter Character ID Number"
+          placeholder="Character ID Number"
           value={characterNumber}
           onChange={(e) => setCharacterNumber(e.target.value)}
         />
         <button>Submit</button>
       </form>
-      {savedCharacters.length > 0 && (
-        <SavedCharacters characters={savedCharacters} />
-      )}
+      <div className="Saved-Characters">
+      <h2>Saved Characters: </h2>
+        {savedCharacters.length > 0 && (
+          <SavedCharacters characters={savedCharacters} />
+        )}
+      </div>
     </div>
   );
 }
