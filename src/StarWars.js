@@ -5,32 +5,42 @@ import DisplayStarWars from './DisplayStarWars';
 function StarWars() {
   const [characterNumber, setCharacterNumber] = useState('');
   const [data, setData] = useState(null);
+  const [savedCharacters, setSavedCharacters] = useState([]);
 
   async function fetchStarWars() {
     const path = `https://swapi.dev/api/people/${characterNumber}/`;
     const res = await fetch(path);
     const json = await res.json();
 
-    console.log(json);
+    //const cod = json.cod;
+   // const message = json.message;
 
-    if (json.error) {
-      setData({ error: json.error });
-      return;
-    }
+    //if (cod !== 87) {
+      //setData({ cod, message });
+      //eturn;
+    //}
 
     const name = json.name;
     const height = json.height;
     const mass = json.mass;
-    const hair_color = json.hair_color;
-    const eye_color = json.eye_color;
+    const hairColor = json.hair_color;
+    const eyeColor = json.eye_color;
 
     setData({
       name,
       height,
       mass,
-      hair_color,
-      eye_color
+      hairColor,
+      eyeColor
     });
+  }
+
+  function handleSave() {
+    setSavedCharacters(savedCharacters => [...savedCharacters, data]);
+  }
+
+  function handleCharacterClick(savedCharacter) {
+    setData(savedCharacter);
   }
 
   return (
@@ -49,6 +59,14 @@ function StarWars() {
           <button>Submit</button>
         </div>
       </form>
+      <div className="saved-characters">
+        {savedCharacters.map((savedCharacter, index) => (
+          <button key={index} onClick={() => handleCharacterClick(savedCharacter)}>
+            {savedCharacter.name}
+          </button>
+        ))}
+      </div>
+      {data && <button onClick={handleSave}>Save</button>}
     </div>
   );
 }
