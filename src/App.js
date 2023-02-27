@@ -1,9 +1,10 @@
 import './App.css';
+import Home from './Home'
 
 function App() {
   return (
     <div className="App">
-      FEW 2.3 Mitsumori, Taylor
+      <Home />
     </div>
   );
 }
